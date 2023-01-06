@@ -19,6 +19,7 @@ class _ItemWidgetState extends State<ItemWidget>
   bool isSelectedr = true;
   bool isSelectedm = false;
   bool isSelectedl = false;
+  double? scale = 1.0;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,7 @@ class _ItemWidgetState extends State<ItemWidget>
         children: [
           AnimatedPositioned(
             duration: Duration(milliseconds: 500),
-            bottom: isExpanded ? 225 : 175,
+            bottom: isExpanded ? 225 : 160,
             child: GestureDetector(
               onPanUpdate: onPanUpdate,
               child: Container(
@@ -55,8 +56,9 @@ class _ItemWidgetState extends State<ItemWidget>
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    Image(
-                      image: AssetImage('assets/images/$imageName'),
+                    Image.asset(
+                      'assets/images/$imageName',
+                      scale: scale,
                     ),
                     const SizedBox(
                       height: 20,
@@ -188,14 +190,17 @@ class _ItemWidgetState extends State<ItemWidget>
         isSelectedr = true;
         isSelectedm = false;
         isSelectedl = false;
+        scale = 1.0;
       } else if (size == "m") {
         isSelectedr = false;
         isSelectedm = true;
         isSelectedl = false;
+        scale = 0.9;
       } else if (size == "l") {
         isSelectedr = false;
         isSelectedm = false;
         isSelectedl = true;
+        scale = 0.8;
       }
     });
   }
